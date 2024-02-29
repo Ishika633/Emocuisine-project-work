@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <style>
+      .jumbotron {
+        background-color: #ffcc00; 
+        color: #333;
+        text-align: center;
+        padding: 20px;
+        margin-bottom: 20px; 
+      }
+
+      .buttons-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px; 
+      }
+
+      .back-button,
+      .zomato-button {
+        padding: 10px 20px; 
+        font-weight: bold;
+        font-size: 18px; 
+        text-decoration: none;
+        color: #fff;
+      }
+
+      .back-button {
+        background-color: #008cba;
+        transition: background-color 0.3s ease;
+      }
+
+      .back-button:hover {
+        background-color: #005b82;
+      }
+
+      .zomato-button {
+        background-color: #4caf50;
+        transition: background-color 0.3s ease;
+      }
+
+      .zomato-button:hover {
+        background-color: #45a049;
+      }
+
+      .card {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease; 
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .card-deck {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .card h5 {
+        font-size: 22px; 
+        font-weight: bold; 
+        margin-bottom: 5px;
+      }
+
+      .card h6 {
+        font-size: 18px; 
+        font-weight: bold; 
+      }
+
+      .card p {
+        font-size: 16px; 
+        font-weight: bold; 
+        color: #777;
+        margin-bottom: 0;
+      }
+
+      .rating {
+        color: #f0ad4e; 
+      }
+
+      body {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        margin: 0; 
+      }
+
+      p.suggestions {
+        font-size: 30px; 
+        font-weight: bold; 
+        font-family: 'Arial', sans-serif; 
+        margin-bottom: 20px; 
+      }
+    </style>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1 style="Font-size:30px">Here's your Comfort Food 🍕 🍔 🍟</h1>
+      <div class="buttons-container">
+        <a class="back-button" href="{{ url_for('home') }}">Go Back</a>
+        <a class="zomato-button" href="https://www.zomato.com/" target="_blank"
+          >Search on Zomato</a
+        >
+      </div>
+    </div>
+    <div class="container text-center">
+      <p class="suggestions">
+        In {{ mood }} mood, here are some suggestions you can try:
+      </p>
+      <div class="card-deck" style="margin-bottom: 20px">
+        {% for restaurant in restaurants1 %}
+        <div class="card">
+          <h5>{{ restaurant["Restaurant Name"] }}</h5>
+          <h6>{{ restaurant["Cuisines"] }}</h6>
+          <p>Avg. Cost for 2: ${{ restaurant["Average Cost for two"] }}</p>
+          <p class="rating">⭐️ {{ restaurant["Aggregate rating"] }} Rating</p>
+          <p>{{ restaurant["Address"] }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="card-deck" style="margin-bottom: 20px">
+        {% for restaurant in restaurants2 %}
+        <div class="card">
+          <h5>{{ restaurant["Restaurant Name"] }}</h5>
+          <h6>{{ restaurant["Cuisines"] }}</h6>
+          <p>Avg. Cost for 2: ${{ restaurant["Average Cost for two"] }}</p>
+          <p class="rating">⭐️ {{ restaurant["Aggregate rating"] }} Rating</p>
+          <p>{{ restaurant["Address"] }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="card-deck" style="margin-bottom: 20px">
+        {% for restaurant in restaurants3 %}
+        <div class="card">
+          <h5>{{ restaurant["Restaurant Name"] }}</h5>
+          <h6>{{ restaurant["Cuisines"] }}</h6>
+          <p>Avg. Cost for 2: ${{ restaurant["Average Cost for two"] }}</p>
+          <p class="rating">⭐️ {{ restaurant["Aggregate rating"] }} Rating</p>
+          <p>{{ restaurant["Address"] }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="card-deck" style="margin-bottom: 20px">
+        {% for restaurant in restaurants4 %}
+        <div class="card">
+          <h5>{{ restaurant["Restaurant Name"] }}</h5>
+          <p>{{ restaurant["Cuisines"] }}</p>
+          <p>Avg. Cost for 2: ${{ restaurant["Average Cost for two"] }}</p>
+          <p class="rating">⭐️ {{ restaurant["Aggregate rating"] }} Rating</p>
+          <p>{{ restaurant["Address"] }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
